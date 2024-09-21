@@ -1,0 +1,42 @@
+FROM flyqie/docker-novnc:latest-arm64-2204
+
+RUN mkdir /tmp/docker-root
+COPY ./docker-root /tmp/docker-root/
+RUN chmod -R 755 /tmp/docker-root/
+RUN cp -r /tmp/docker-root/* /
+RUN rm -rf /tmp/docker-root
+
+RUN apt-get update && \
+	apt-get install -y wget language-pack-zh-hans tzdata fontconfig fonts-wqy-zenhei && \
+	apt-get install -y --no-install-recommends fcitx fcitx-ui-classic fcitx-pinyin && \
+	apt-get install -y \
+		dbus-user-session libgtk-3-0 libnotify4 libnss3 libxss1 \
+		libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 \
+		libasound2 gnutls-bin libgbm1 ffmpeg xfe curl
+
+RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/1aff6d6d/linuxqq_3.2.12-28060_arm64.deb && \
+	wget -O /tmp/LiteLoaderQQNT.zip https://github.com/NapNeko/NapCat.Docker.Framework/raw/refs/heads/main/LiteLoaderQQNT-inner.zip && \
+	wget -O /tmp/LoadLiteLoader.js https://raw.githubusercontent.com/NapNeko/NapCat.Docker.Framework/refs/heads/main/LoadLiteLoader.js && \
+	curl -L -o /tmp/NapCat.Framework.zip https://github.com/NapNeko/NapCatQQ/releases/download/$(curl -Ls "https://api.github.com/repos/NapNeko/NapCatQQ/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/NapCat.Framework.zip
+
+RUN apt-get install -f -y /tmp/linux_qq.deb && \
+	rm -f /tmp/linux_qq.deb && \
+	mkdir -p /opt/QQ/resources/app/LiteLoader && \
+	mv /tmp/LoadLiteLoader.js /opt/QQ/resources/app/LoadLiteLoader.js && \
+	sed -i 's/"main": ".\/application\/app_launcher\/index.js"/"main": ".\/LoadLiteLoader.js"/' /opt/QQ/resources/app/package.json
+
+RUN chsh -s /bin/bash user && \
+	mkdir -p /home/user/.fonts/ && \
+	chown -R user:user /home/user && \
+	su user -c 'fc-cache -v'
+
+RUN apt-get autoremove -y && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists
+
+ENV LANG=zh_CN.UTF-8 \
+    LC_ALL=zh_CN.UTF-8 \
+    TZ=Asia/Shanghai
+
+VOLUME ["/opt/QQ/resources/app/LiteLoader"]
+VOLUME ["/home/user/.config/QQ"]
