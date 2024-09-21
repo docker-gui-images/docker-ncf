@@ -33,7 +33,7 @@ docker run --name=ncf -d -p 9000:9000 -p 3000:3000 -p 3001:3001 -v `pwd`/qq_app:
 ### 使用 VNC 进行鉴权 (不推荐)
 
 ```bash
-docker run --name=ncf -d -p 9000:9000 -p 3000:3000 -p 3001:3001 -v `pwd`/qq_app:/opt/QQ -v `pwd`/qq_data:/home/user/.config/QQ -e VNC_GEOMETRY="1280x720" -e VNC_PASSWD="12345678" flyqie/docker-ncf:latest-amd64
+docker run --name=ncf -d -p 9000:9000 -p 3000:3000 -p 3001:3001 -v `pwd`/qq_app:/opt/QQ/resources/app/LiteLoader -v `pwd`/qq_data:/home/user/.config/QQ -e VNC_GEOMETRY="1280x720" -e VNC_PASSWD="12345678" flyqie/docker-ncf:latest-amd64
 ```
 
 ## 环境变量
