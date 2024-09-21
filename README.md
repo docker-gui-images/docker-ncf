@@ -6,7 +6,7 @@ docker-ncf 可以使你在 Docker 容器中运行 NapCat.Framework。
 
 随着版本更新，docker 的 NapCat.Framework 并不保证总是可用。若你遇到不可用问题，在严格按照下述步骤执行后仍可复现，请通过 Issue 反馈。
 
-该项目修改自docker-wine-coolq及NapCat.Docker.Framerwrok， 非常感谢相关贡献者做出的开创性工作。
+该项目修改自docker-wine-coolq及NapCat.Docker.Framework， 非常感谢相关贡献者做出的开创性工作。
 
 示例均为amd64(x86_64)，如需arm64请自行替换镜像tag。
 
