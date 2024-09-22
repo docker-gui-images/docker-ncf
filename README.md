@@ -12,7 +12,7 @@ docker-ncf 可以使你在 Docker 容器中运行 NapCat.Framework。
 
 镜像内已预装ffmpeg，路径为`/usr/bin/ffmpeg`，可直接使用。
 
-## 下载使用
+## 快速开始(临时使用)
 
 如果你在服务器上使用 `docker` 或者和 docker 兼容的服务，只需执行：
 
@@ -22,7 +22,7 @@ docker run -it --rm -p 9000:9000 -p 3000:3000 -p 3001:3001 -p 6099:6099 -v `pwd`
 
 即可运行一个 docker-ncf 实例。运行后，访问 `http://你的IP:9000` 可以打开 noVNC 页面，输入 `MAX8char` 作为密码后即可看到 NapCat.Framework 已经启动。
 
-## 常用示例
+## 常用示例(正式使用)
 
 ### 使用 HTTP Basic Authentication 进行鉴权 (推荐)
 
