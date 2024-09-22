@@ -1,4 +1,4 @@
-FROM flyqie/docker-novnc:latest-amd64-2204
+FROM dockerguiimages/docker-novnc:latest-amd64-2204
 
 RUN mkdir /tmp/docker-root
 COPY ./docker-root /tmp/docker-root/
