@@ -14,9 +14,11 @@ RUN apt-get update && \
 		libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 \
 		libasound2 gnutls-bin libgbm1 ffmpeg xfe curl
 
-RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/1aff6d6d/linuxqq_3.2.12-28060_arm64.deb && \
-	wget -O /tmp/LiteLoaderQQNT.zip https://github.com/NapNeko/NapCat.Docker.Framework/raw/refs/heads/main/LiteLoaderQQNT-inner.zip && \
-	wget -O /tmp/LoadLiteLoader.js https://raw.githubusercontent.com/NapNeko/NapCat.Docker.Framework/refs/heads/main/LoadLiteLoader.js && \
+# 从上游仓库同步部分内容
+COPY ./NapCat.Docker.Framework/LiteLoaderQQNT-inner.zip /tmp/
+COPY ./NapCat.Docker.Framework/LoadLiteLoader.js /tmp/
+
+RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/f60e8252/linuxqq_3.2.12-28327_arm64.deb && \
 	curl -L -o /tmp/NapCat.Framework.zip https://github.com/NapNeko/NapCatQQ/releases/download/$(curl -Ls "https://api.github.com/repos/NapNeko/NapCatQQ/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/NapCat.Framework.zip
 
 RUN apt-get install -f -y /tmp/linux_qq.deb && \

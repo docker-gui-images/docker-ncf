@@ -1,0 +1,3 @@
+[submodule "NapCat.Docker.Framework"]
+	path = NapCat.Docker.Framework
+	url = https://github.com/NapNeko/NapCat.Docker.Framework.git
