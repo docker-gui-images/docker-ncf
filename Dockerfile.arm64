@@ -15,7 +15,7 @@ RUN apt-get update && \
 		libasound2 gnutls-bin libgbm1 ffmpeg xfe curl
 
 # 从上游仓库同步部分内容
-COPY ./NapCat.Docker.Framework/LiteLoaderQQNT-inner.zip /tmp/
+COPY ./NapCat.Docker.Framework/LiteLoaderQQNT-inner.zip /tmp/LiteLoaderQQNT.zip
 COPY ./NapCat.Docker.Framework/LoadLiteLoader.js /tmp/
 
 RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/f60e8252/linuxqq_3.2.12-28327_arm64.deb && \
