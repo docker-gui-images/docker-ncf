@@ -13,6 +13,11 @@ export XMODIFIERS=@im=fcitx
 xdg-mime default xfe.desktop inode/directory
 stalonetray --dockapp-mode simple &
 
+if [ "$(arch)" = "x86_64" ]; then
+	/opt/napcat.packet/napcat.packet.linux 2>&1 &
+	sleep 2
+fi
+
 while true; do
 	echo "[QQDaemon] Starting QQ ...."
 	/opt/QQ/qq --no-sandbox &
