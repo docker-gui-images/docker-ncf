@@ -27,11 +27,6 @@ RUN apt-get install -f -y /tmp/linux_qq.deb && \
 	mv /tmp/LoadLiteLoader.js /opt/QQ/resources/app/LoadLiteLoader.js && \
 	sed -i 's/"main": ".\/application\/app_launcher\/index.js"/"main": ".\/LoadLiteLoader.js"/' /opt/QQ/resources/app/package.json
 
-# packet-server
-RUN mkdir /opt/napcat.packet && \
-	curl -L -o /opt/napcat.packet/napcat.packet.linux https://github.com/NapNeko/NapCatQQ/releases/download/v3.0.0/napcat.packet.linux && \
-	chmod -R 755 /opt/napcat.packet/
-
 RUN chsh -s /bin/bash user && \
 	mkdir -p /home/user/.fonts/ && \
 	chown -R user:user /home/user && \
