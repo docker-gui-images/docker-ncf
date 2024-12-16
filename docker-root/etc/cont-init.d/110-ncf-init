@@ -15,6 +15,11 @@ if [ ! -f "/opt/QQ/resources/app/LiteLoader/plugins/NapCat/manifest.json" ]; the
     unzip /tmp/NapCat.Framework.zip -d /opt/QQ/resources/app/LiteLoader/plugins/NapCat/
 fi
 
+# 安装 LiteLoaderQQNT-Kill-Update
+if [ ! -f "/opt/QQ/resources/app/LiteLoader/plugins/LiteLoaderQQNT-Kill-Update-0.1.5/manifest.json" ]; then
+    unzip /tmp/LiteLoaderQQNT-Kill-Update-0.1.5.zip -d /opt/QQ/resources/app/LiteLoader/plugins/
+fi
+
 rm -rf /run/dbus/pid
 mkdir -p /var/run/dbus
 chmod -R 777 /var/run/dbus

@@ -27,6 +27,9 @@ RUN apt-get install -f -y /tmp/linux_qq.deb && \
 	mv /tmp/LoadLiteLoader.js /opt/QQ/resources/app/LoadLiteLoader.js && \
 	sed -i 's/"main": ".\/application.asar\/app_launcher\/index.js"/"main": ".\/LoadLiteLoader.js"/' /opt/QQ/resources/app/package.json
 
+# 禁用自动更新
+RUN wget -O /tmp/LiteLoaderQQNT-Kill-Update-0.1.5.zip https://github.com/xh321/LiteLoaderQQNT-Kill-Update/archive/refs/tags/0.1.5.zip
+
 RUN chsh -s /bin/bash user && \
 	mkdir -p /home/user/.fonts/ && \
 	chown -R user:user /home/user && \
