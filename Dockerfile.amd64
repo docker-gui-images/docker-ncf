@@ -18,7 +18,7 @@ RUN apt-get update && \
 COPY ./NapCat.Docker.Framework/LiteLoaderQQNT-inner.zip /tmp/LiteLoaderQQNT.zip
 COPY ./NapCat.Docker.Framework/LoadLiteLoader.js /tmp/
 
-RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/55fb6434/linuxqq_3.2.13-29456_amd64.deb && \
+RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/e379390a/linuxqq_3.2.13-29456_amd64.deb && \
 	curl -L -o /tmp/NapCat.Framework.zip https://github.com/NapNeko/NapCatQQ/releases/download/$(curl -Ls "https://api.github.com/repos/NapNeko/NapCatQQ/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/NapCat.Framework.zip
 
 RUN apt-get install -f -y /tmp/linux_qq.deb && \
