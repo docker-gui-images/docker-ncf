@@ -18,14 +18,14 @@ RUN apt-get update && \
 COPY ./NapCat.Docker.Framework/LiteLoaderQQNT-inner.zip /tmp/LiteLoaderQQNT.zip
 COPY ./NapCat.Docker.Framework/LoadLiteLoader.js /tmp/
 
-RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/55fb6434/linuxqq_3.2.13-28788_amd64.deb && \
+RUN wget -O /tmp/linux_qq.deb https://dldir1.qq.com/qqfile/qq/QQNT/55fb6434/linuxqq_3.2.13-29456_amd64.deb && \
 	curl -L -o /tmp/NapCat.Framework.zip https://github.com/NapNeko/NapCatQQ/releases/download/$(curl -Ls "https://api.github.com/repos/NapNeko/NapCatQQ/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')/NapCat.Framework.zip
 
 RUN apt-get install -f -y /tmp/linux_qq.deb && \
 	rm -f /tmp/linux_qq.deb && \
 	mkdir -p /opt/QQ/resources/app/LiteLoader && \
 	mv /tmp/LoadLiteLoader.js /opt/QQ/resources/app/LoadLiteLoader.js && \
-	sed -i 's/"main": ".\/application\/app_launcher\/index.js"/"main": ".\/LoadLiteLoader.js"/' /opt/QQ/resources/app/package.json
+	sed -i 's/"main": ".\/application.asar\/app_launcher\/index.js"/"main": ".\/LoadLiteLoader.js"/' /opt/QQ/resources/app/package.json
 
 RUN chsh -s /bin/bash user && \
 	mkdir -p /home/user/.fonts/ && \
